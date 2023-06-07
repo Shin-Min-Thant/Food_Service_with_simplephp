@@ -8,6 +8,15 @@ function RegisterUser($name,$address,$email,$password){
 
     }
 }
+
+function LoginName($email,$password){
+    if(CheckEmail($email) && CheckPassword($password)){
+        return loginUser($email,$password);
+    }else{
+        return "Fail";
+
+    }
+}
 function CheckuserName($name){
     if(strlen($name) >= 5){
         $bol = preg_match("/^[a-zA-Z]+$/",$name);

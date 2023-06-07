@@ -32,6 +32,23 @@ if($result == 1){
    
 };
 
+function loginUser($email,$password){
+    $connection = myConnect();
+    $password = passGen($password);
+    $qry = "SELECT name FROM membership WHERE 'email'='$email' && 'passowrd'='$password';";
+    $result = mysqli_query($connection,$qry);
+    foreach($result as $res){
+        return $res['name'];
+   
+    if($res['name']){
+        
+        return "Login Success";
+    }else{
+        return "Login Fail";
+    }
+}
+}
+
 
 function getMyTimeNow(){
     return date("Y-m-d H:m:s", time());
