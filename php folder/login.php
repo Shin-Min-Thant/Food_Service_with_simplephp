@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,29 +18,39 @@
   <body>
   <?php  include_once("../assets/nav.php")?>
   <?php  require_once("../system/registerconnect.php"); ?>
+  
   <?php
     if(isset($_POST['submit'])){
   
       $email = $_POST['email'];
       $password = $_POST['password'];
       $res = LoginName($email,$password);
-      if($res == "Login Success"){
-        echo "Login Success";
-        $_SESSION['name'] = $username;
-        $_SESSION['email'] = $email;
-        $_SESSION['password'] = $password;
-        // header("location: index.php");
-      }elseif($res == "Login Fail"){
-        echo "Login Fail";
-      }elseif($res == "Fail"){
-        echo "Authentication Fial";
-      }else{
-        echo "pass";
-      }
+      $message = "";
+      switch($res){
+        case "Login Success" : 
+          $message = "Login Success";
+          header("location: index.php");
+          break;
+          case "Fail" : 
+            $message = "Authentication Fail";
+            break;
+        case "Login Fail":
+          $message = "Login Fail";
+          
+          
+          break;
+        default:
+        break;
       
-    }
+      };
+      echo "<container><div  class='alert alert-info container'>
+      .$message.
+      </div></container>";
+      
+
  
-    
+    };
+
   ?>
 
     <div

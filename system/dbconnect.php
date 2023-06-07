@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php 
 
 
@@ -35,18 +36,27 @@ if($result == 1){
 function loginUser($email,$password){
     $connection = myConnect();
     $password = passGen($password);
-    $qry = "SELECT name FROM membership WHERE 'email'='$email' && 'passowrd'='$password';";
-    $result = mysqli_query($connection,$qry);
-    foreach($result as $res){
-        return $res['name'];
+    $qury = "SELECT name FROM membership WHERE email='$email' AND password = '$password';";
+    $result = mysqli_query($connection,$qury);
    
-    if($res['name']){
-        
+    $username = "";
+    
+    foreach($result as $res){
+        $username= $res['name'];
+    }
+    if($username){
+      
+        $_SESSION['name'] = $username;
+        $_SESSION['email'] =$email;
+        // $_SESSION['password']=$password;
+
         return "Login Success";
+
     }else{
         return "Login Fail";
     }
-}
+   
+
 }
 
 
@@ -61,5 +71,6 @@ function passGen($pass){
     return $pass;
 
 }
+
 
 ?>
