@@ -1,9 +1,4 @@
-<?php session_start(); 
-   if(!isset($_SESSION['name'])){
-    header("location: index.php");
-}else{
-    header("location: Customer.php");
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

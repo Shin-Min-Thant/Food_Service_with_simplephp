@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start();
+   if(!isset($_SESSION['name'])){
+    header("location: signup.php");
+}else{
+  echo "";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
