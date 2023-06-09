@@ -59,8 +59,18 @@ function loginUser($email,$password){
 
 }
 
+function getProfile(){
+    // $password = passGen($password);
+    $curTime = getMyTimeNow();
+    $connection = myConnect();
+    $qry = "SELECT * FROM membership";
+    $result = mysqli_query($connection,$qry);
+    return $result;
+}
+
 
 function getMyTimeNow(){
+    date_default_timezone_set("Asia/Yangon");
     return date("Y-m-d H:m:s", time());
 }
 

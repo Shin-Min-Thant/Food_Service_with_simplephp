@@ -1,7 +1,7 @@
 <?php session_start(); 
 
    if(!isset($_SESSION['name'])){
-    header("location: signup.php") ;
+    header("location: please_log.php") ;
   }else{
     echo "";
 }

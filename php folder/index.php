@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+
+<?php include_once("../system/reviewpost.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,27 @@
 </head>
 <body>
   <?php  include_once("../assets/nav.php")?>
+
+  <?php 
+   if(isset($_POST["submit"])){
+    $username = $_POST['username'];
+    $file = $_FILES['fileSelect']['name'];
+    $area = $_POST['area'];
+    move_uploaded_file($_FILES['fileSelect']['tmp_name'],'../system/uploaded/'.$file);
+   
+   $bol = insertReview($username,$file,$area);
+   if($bol){
+    echo "<container><div  class='alert alert-info container'>
+    Review Successfully
+    </div></container>";
+   }else{
+    echo "<container><div  class='alert alert-info container'>
+    Review Fail
+    </div></container>";
+   }
+   }
+   ?>
+
     <section>
         <div class="container gradient">
         <div class="begin"></div>
@@ -115,10 +137,52 @@
         </div>
     </section>
 
+       
+   <!-- Review side -->
+   <hr><br>
+
+   <h1 class="text-center">You can give your feedback to our Page.</h1>
+   <form action="index.php" method="post" enctype="multipart/form-data">
+      <div
+        class="container justify-content-center align-items-center text-center margin-auto d-flex flex-column my-3"
+        style="
+          background: linear-gradient(rgb(237, 154, 154), rgb(145, 145, 214));
+        "
+      >
+   
+        <div>
+          <div class="mb-3 row mt-3">
+            <label for="inputUser" class="col-sm-3 col-form-label"
+              >Username</label
+            >
+            <div class="col-sm-9">
+              <input type="text" class="form- w-100" id="inputUser" name="username" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <input class="form-control w-100" type="file" id="" multiple name="fileSelect" />
+          </div>
+
+          <textarea
+            name="area"
+            id=""
+            rows="8"
+            cols="40"
+            placeholder="You can review here"
+            class="my-3"
+          ></textarea>
+
+          <button class="btn btn-lg btn-secondary w-50 fs-6 mb-3" name="submit">Give Feedback</button>
+          <p class="mt-3">You can edit your review in customer review.</p>
+        </div>
+      </div>
+    </form>
+
   
     
     
-   
+   <!-- Sign up -->
     <section>
         <div class="container" style="background: linear-gradient(rgb(219, 185, 237),rgb(252, 238, 149));">
             <div class="row">
