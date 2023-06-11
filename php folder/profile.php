@@ -15,21 +15,22 @@
 <body>
 <?php  include_once("../assets/nav.php");
 include_once("../system/dbconnect.php");
-$res = getProfile();
-$name = "";
-$address ="";
-$email = "";
-$password = "";
-$created = "";
-$updated ="";
-foreach($res as $item){
+$result = getProfile();
+
+foreach($result as $item){
+    $id = $item['id'];
     $name = $item['name'];
-    $address =$item['address'];
+    $address = $item['address'];
     $email = $item['email'];
-    $password = $item['password'];
-    $created = $item['created_at'];
-    $updated = $item['updated_at'];
+    $password = $item['name'];
+    $created_at = $item['created_at'];
+    $updated_at = $item['updated_at'];
 }
+
+
+
+
+
 ?>
 
 
@@ -47,7 +48,8 @@ foreach($res as $item){
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" value="<?php echo $name ?>"></div>
+                    <div class="col-md-6"><label class="labels">Username</label>
+                    <input type="text" class="form-control" value="<?php echo $name ?>"></div>
                    
                 </div>
                 <div class="row mt-3">
@@ -57,10 +59,11 @@ foreach($res as $item){
                     
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Created_at</label><input type="text" class="form-control" value="<?php echo $created ?>"></div>
-                    <div class="col-md-6"><label class="labels">Updated_at</label><input type="text" class="form-control" value="<?php echo $updated ?>"></div>
+                    <div class="col-md-6"><label class="labels">Created_at</label><input type="text" class="form-control" value="<?php echo $created_at?>"></div>
+                    <div class="col-md-6"><label class="labels">Updated_at</label><input type="text" class="form-control" value="<?php echo $updated_at?>"></div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Edit Profile</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">
+                    <a href="editprofiel.php?userId=<?php $id ?>" class="nav-link text-light">Edit Profile</a></button></div>
             </div>
         </div>
 

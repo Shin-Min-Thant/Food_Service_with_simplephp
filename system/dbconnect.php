@@ -65,6 +65,15 @@ function getProfile(){
     $connection = myConnect();
     $qry = "SELECT * FROM membership";
     $result = mysqli_query($connection,$qry);
+   return $result;
+  
+}
+
+function getEdit($reviewId){
+    $curTime = getMyTimeNow();
+    $connection = myConnect();
+    $qry = "SELECT * FROM membership WHERE id='$reviewId';";
+    $result = mysqli_query($connection,$qry);
     return $result;
 }
 

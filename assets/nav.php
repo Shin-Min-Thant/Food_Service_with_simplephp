@@ -1,4 +1,4 @@
-
+<?php include_once("../system/dbconnect.php"); ?>
 <div class="nav">
     <div class="container sticky-top ">
         <nav class="navbar navbar-expand-lg shadow bg-body p-3 mb-5 intro">
@@ -50,7 +50,8 @@
                          if(isset($_SESSION['name'])){
                             echo "<li class='dropdown-item'><a href='logout.php' class='nav-link'>Logout</a></li>
                             <div class='dropdown-divider'></div>
-                            <li class='dropdown-item'><a href='profile.php' class='nav-link'>Edit Profile</a></li>
+                            
+                            <li class='dropdown-item'><a href='profile.php' class='nav-link'>Show Profile</a></li>
                             <div class='dropdown-divider'></div>";
                         }else{
                             echo "<li class='dropdown-item'><a href='signup.php' class='nav-link'>Sign Up</a></li>

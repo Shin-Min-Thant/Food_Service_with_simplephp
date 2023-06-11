@@ -32,24 +32,26 @@
         <?php
         $res = getReview();
         foreach($res as $item){
-          echo'<div class="card mx-3 my-3" style="width: 18rem">
-          <img class="card-img-top my-3" src="../system/uploaded/'.$item['fileselect'].'" alt="Card image cap" />
+          $id = $item['id'];
+          echo'<div class="card mx-3 my-3 bg-info" style="width: 18rem heigh: 30px">
+          <img class="card-img-top my-3" src="../system/uploaded/'.$item['fileselect'].'" alt="Card image cap" style="width:150px" />
           <div class="card-body">
-            <h5 class="card-title">'.$item['username'].'</h5>
-            <p class="card-text">
-            '.substr($item['area'],0,100).'
+            <h5 class="card-title " style="color: red">'.$item['username'].'</h5>
+            <hr>
+            <p class="card-text" >
+            '.$item['area'].'
             </p>
           </div>
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush my-3">
             <li class="list-group-item">uploaded_at('.$item['created_at'].')</li>
             <li class="list-group-item">edited_at('.$item['updated_at'].')</li>
-            <li class="list-group-item">Edit Feedback</li>
+            <li class="list-group-item">  <a href="customer_edit.php?reviewId='.$id.'" class="nav-link">Edit Feedback</a></li>
           </ul>
        
         </div>';
         }
         ?>
-        
+      
       </div>
     </div>
  
